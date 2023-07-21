@@ -1,29 +1,71 @@
 import { waitFor } from '@analogjs/trpc';
 import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { Component, TrackByFunction } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
-import { Post } from '@prisma/client';
-import { shareReplay, switchMap, take } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { injectTrpcClient } from '../../../trpc-client';
+import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { RouterModule } from '@angular/router';
+import { Post } from '@prisma/client';
+import { Subject } from 'rxjs';
+import { shareReplay, switchMap, take } from 'rxjs/operators';
+import { injectTrpcClient } from '../../../trpc-client';
 
 @Component({
   selector: 'app-posts-list',
   standalone: true,
-  imports: [NgIf, NgFor, AsyncPipe, FormsModule, RouterModule],
+  imports: [
+    NgIf,
+    NgFor,
+    AsyncPipe,
+
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule,
+
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+  ],
+  styles: [
+    `
+      :host {
+        display: block;
+        padding: 1rem;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+
+        button {
+          align-self: flex-start;
+        }
+      }
+    `,
+  ],
   template: `
     <h2>Posts</h2>
     <form (ngSubmit)="addPost(form)" #form="ngForm">
-      <input type="text" name="title" placeholder="Title" required ngModel />
-      <textarea
-        name="text"
-        placeholder="Text"
-        required
-        minlength="3"
-        ngModel
-      ></textarea>
-      <button type="submit">Add Post</button>
+      <mat-form-field>
+        <mat-label>Input</mat-label>
+        <input matInput type="text" name="title" required ngModel />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Textarea</mat-label>
+        <textarea
+          matInput
+          name="text"
+          required
+          minlength="3"
+          ngModel
+        ></textarea>
+      </mat-form-field>
+
+      <button mat-stroked-button color="primary" type="submit">Add Post</button>
     </form>
 
     <div *ngIf="posts$ | async as posts">

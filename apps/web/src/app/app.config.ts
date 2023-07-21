@@ -1,8 +1,9 @@
-import { ApplicationConfig } from '@angular/core';
-import { provideHttpClient } from '@angular/common/http';
-import { provideClientHydration } from '@angular/platform-browser';
 import { provideFileRouter } from '@analogjs/router';
+import { provideHttpClient } from '@angular/common/http';
+import { ApplicationConfig } from '@angular/core';
+import { provideClientHydration } from '@angular/platform-browser';
 
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideTrpcClient } from '../trpc-client';
 
 export const appConfig: ApplicationConfig = {
@@ -10,6 +11,7 @@ export const appConfig: ApplicationConfig = {
     provideFileRouter(),
     provideClientHydration(),
     provideHttpClient(),
+    provideAnimations(),
 
     provideTrpcClient(),
   ],
