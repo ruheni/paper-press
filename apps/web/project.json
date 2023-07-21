@@ -17,7 +17,7 @@
         "configFile": "apps/web/vite.config.ts",
         "outputPath": "dist/apps/web/client"
       },
-      "defaultConfiguration": "production",
+      "defaultConfiguration": "produ",
       "configurations": {
         "development": {
           "mode": "development"

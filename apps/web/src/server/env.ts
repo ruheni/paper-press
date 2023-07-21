@@ -8,7 +8,6 @@ import { z } from 'zod';
 
 /*eslint sort-keys: "error"*/
 const envSchema = z.object({
-  DATABASE_URL: z.string().url(),
   NODE_ENV: z.enum(['development', 'test', 'production']),
 });
 
@@ -17,7 +16,7 @@ const schema = envSchema.safeParse(process.env);
 if (!schema.success) {
   console.error(
     '❌ Invalid environment variables:',
-    JSON.stringify(schema.error.format(), null, 4),
+    JSON.stringify(schema.error.format(), null, 4)
   );
   process.exit(1);
 }
