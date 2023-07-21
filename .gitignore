@@ -37,3 +37,21 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+.angular
+
+
+# playwright
+
+**/test-results/
+**/playwright-report/
+**/playwright/.cache/
+
+
+# local env files
+.env
+*.env
+*.env.*
+
+# DB files
+*.db

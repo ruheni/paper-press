@@ -1,0 +1,35 @@
+{
+  "name": "web-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/web-e2e/src",
+  "targets": {
+    "e2e": {
+      "executor": "@paper-press/playwright:playwright",
+      "options": {
+        "playwrightConfig": "playwright.config.ts"
+      },
+      "outputs": ["apps/web-e2e/playwright-report"]
+    },
+    "debug": {
+      "executor": "@paper-press/playwright:playwright",
+      "options": {
+        "playwrightConfig": "playwright.config.ts",
+        "debug": true,
+        "project": "chromium",
+        "timeout": 0
+      }
+    },
+    "show-report": {
+      "executor": "@paper-press/playwright:show-report"
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/web-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": []
+}

@@ -14,7 +14,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@paper-press/playwright": ["libs/playwright/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

@@ -1,0 +1,60 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/playwright/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/playwright",
+        "main": "libs/playwright/src/index.ts",
+        "tsConfig": "libs/playwright/tsconfig.lib.json",
+        "assets": [
+          "libs/playwright/*.md",
+          {
+            "input": "./libs/playwright/src",
+            "glob": "**/!(*.ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./libs/playwright/src",
+            "glob": "**/*.d.ts",
+            "output": "./src"
+          },
+          {
+            "input": "./libs/playwright",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./libs/playwright",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/playwright/**/*.ts",
+          "libs/playwright/generators.json",
+          "libs/playwright/executors.json",
+          "libs/playwright/package.json"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/playwright"],
+      "options": {
+        "jestConfig": "libs/playwright/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
