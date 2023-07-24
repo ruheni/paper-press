@@ -14,11 +14,14 @@ function getBaseUrl() {
     // reference for render.com
     return `http://${env.RENDER_INTERNAL_HOSTNAME}:${env.PORT}`;
   // assume localhost
-  return `http://localhost:${env.PORT ?? 3000}`;
+  return `http://127.0.0.1:${env.PORT ?? 3000}`;
 }
 
+const url = `${getBaseUrl()}/api/trpc` as const;
+console.log('trpc-client.ts: url:', url);
+
 export const { provideTrpcClient, TrpcClient } = createTrpcClient<AppRouter>({
-  url: `${getBaseUrl()}/api/trpc`,
+  url,
 });
 
 export function injectTrpcClient() {

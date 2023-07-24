@@ -14,7 +14,7 @@ const envSchema = z.object({
   PORT: z.string().optional(),
 });
 
-const schema = envSchema.safeParse(process.env);
+const schema = envSchema.safeParse(process?.env);
 
 if (!schema.success) {
   console.error(
