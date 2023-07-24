@@ -26,13 +26,13 @@ export default class NoteDetailsPageComponent {
 
   public note$ = this.route.paramMap.pipe(
     switchMap((params) =>
-      this._trpc.posts.byId.query({ id: params.get('noteId') ?? '' })
+      this._trpc.posts.byId.query({ id: params.get('noteId') ?? '' }),
     ),
     catchError((err) => {
       console.error(err);
       return of(null);
     }),
-    shareReplay(1)
+    shareReplay(1),
   );
 
   constructor() {

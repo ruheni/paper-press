@@ -14,7 +14,7 @@ function getBaseUrl() {
     // reference for render.com
     return `http://${env.RENDER_INTERNAL_HOSTNAME}:${env.PORT}`;
   // assume localhost
-  return `http://127.0.0.1:${env.PORT ?? 3000}`;
+  return `http://127.0.0.1:${env.PORT ?? 4200}`;
 }
 
 const url = `${getBaseUrl()}/api/trpc` as const;

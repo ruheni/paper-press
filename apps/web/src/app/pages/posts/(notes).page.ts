@@ -44,6 +44,29 @@ import { injectTrpcClient } from '../../../trpc-client';
           align-self: flex-start;
         }
       }
+
+      .posts {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        h3 {
+          margin: 0;
+
+          a {
+            text-decoration: none;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+
+          + p {
+            margin-top: 0.5rem;
+            white-space: pre-wrap;
+          }
+        }
+      }
     `,
   ],
   template: `
@@ -68,7 +91,7 @@ import { injectTrpcClient } from '../../../trpc-client';
       <button mat-stroked-button color="primary" type="submit">Add Post</button>
     </form>
 
-    <div *ngIf="posts$ | async as posts">
+    <div *ngIf="posts$ | async as posts" class="posts">
       <div *ngFor="let post of posts.items; trackBy: postTrackBy">
         <h3>
           <a [routerLink]="[post.id]">{{ post.title }}</a>
@@ -83,7 +106,7 @@ export default class ProductsListComponent {
   public triggerRefresh$ = new Subject<void>();
   public posts$ = this.triggerRefresh$.pipe(
     switchMap(() => this._trpc.posts.list.query()),
-    shareReplay(1)
+    shareReplay(1),
   );
 
   constructor() {
@@ -98,8 +121,6 @@ export default class ProductsListComponent {
       form.form.markAllAsTouched();
       return;
     }
-
-    console.log(form.value);
 
     this._trpc.posts.add
       .mutate({ title: form.value.title, text: form.value.text })
