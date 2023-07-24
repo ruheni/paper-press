@@ -14,19 +14,29 @@ const envSchema = z.object({
   PORT: z.string().optional(),
 });
 
-const schema = envSchema.safeParse({
-  NODE_ENV: process?.env?.['NODE_ENV'],
-  VERCEL_URL: process?.env?.['VERCEL_URL'],
-  RENDER_INTERNAL_HOSTNAME: process?.env?.['RENDER_INTERNAL_HOSTNAME'],
-  PORT: process?.env?.['PORT'],
-});
+let envData = {} as z.infer<typeof envSchema>;
 
-if (!schema.success) {
-  console.error(
-    '❌ Invalid environment variables:',
-    JSON.stringify(schema.error.format(), null, 4)
-  );
-  process.exit(1);
+// check if process is defined
+if (typeof process === 'undefined') {
+  envData = {
+    NODE_ENV: 'development',
+  };
+} else {
+  const schema = envSchema.safeParse({
+    NODE_ENV: process?.env?.['NODE_ENV'],
+    VERCEL_URL: process?.env?.['VERCEL_URL'],
+    RENDER_INTERNAL_HOSTNAME: process?.env?.['RENDER_INTERNAL_HOSTNAME'],
+    PORT: process?.env?.['PORT'],
+  });
+
+  if (!schema.success) {
+    console.error(
+      '❌ Invalid environment variables:',
+      JSON.stringify(schema.error.format(), null, 4)
+    );
+    process.exit(1);
+  }
+
+  envData = schema.data;
 }
-
-export const env = schema.data;
+export const env = envData;
