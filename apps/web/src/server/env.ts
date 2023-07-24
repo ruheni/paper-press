@@ -14,7 +14,12 @@ const envSchema = z.object({
   PORT: z.string().optional(),
 });
 
-const schema = envSchema.safeParse(process?.env);
+const schema = envSchema.safeParse({
+  NODE_ENV: process?.env?.['NODE_ENV'],
+  VERCEL_URL: process?.env?.['VERCEL_URL'],
+  RENDER_INTERNAL_HOSTNAME: process?.env?.['RENDER_INTERNAL_HOSTNAME'],
+  PORT: process?.env?.['PORT'],
+});
 
 if (!schema.success) {
   console.error(
