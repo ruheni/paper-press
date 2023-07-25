@@ -1,0 +1,179 @@
+<header>
+  <nav>
+    <button
+      class="circle large transparent m l small-margin"
+      data-ui="#dialog-expanded"
+    >
+      <i>menu</i>
+    </button>
+    <h5 class="max center-align">Title</h5>
+    <button
+      class="circle large transparent m l small-margin"
+      data-ui="#themes"
+    >
+      <i>palette</i>
+    </button>
+  </nav>
+</header>
+
+<dialog class="left small" id="dialog-expanded">
+  <header class="fixed">
+    <nav>
+      <button class="transparent circle large" data-ui="#dialog-expanded">
+        <i>menu</i>
+      </button>
+    </nav>
+  </header>
+  <a class="row round" data-ui="#dialog-expanded" [routerLink]="['/']">
+    <i>home</i>
+    <div>Home</div>
+  </a>
+  <a class="row round" data-ui="#dialog-expanded" [routerLink]="['/', 'notes']"
+    ><i>whatshot</i>
+    <div>What's hot</div></a
+  >
+  <div class="small-divider"></div>
+  <a class="row round" data-ui="#dialog-expanded">
+    <i>history</i>
+    <div>History</div>
+  </a>
+</dialog>
+
+<dialog class="medium no-scroll" id="themes">
+  <header class="fixed">
+    <nav>
+      <button class="circle transparent" (click)="updateMode()">
+        <i>{{ isDark ? 'light_mode' : 'dark_mode' }}</i>
+      </button>
+      <button class="circle transparent">
+        <i>close</i>
+      </button>
+    </nav>
+  </header>
+  <div>
+    <nav class="wrap">
+      <button
+        class="round square transparent extra"
+        (click)="updateTheme('/wallpaper-1.jpg')"
+      >
+        <!-- <img class="responsive" :src="'/wallpaper-1.jpg'" /> -->
+      </button>
+      <button
+        class="round square transparent extra"
+        (click)="updateTheme('/wallpaper-2.jpg')"
+      >
+        <!-- <img class="responsive" :src="'/wallpaper-2.jpg'" /> -->
+      </button>
+      <button
+        class="round square transparent extra"
+        (click)="updateTheme('/wallpaper-3.jpg')"
+      >
+        <!-- <img class="responsive" :src="'/wallpaper-3.jpg'" /> -->
+      </button>
+      <button
+        class="round square transparent extra"
+        (click)="updateTheme('/wallpaper-4.jpg')"
+      >
+        <!-- <img class="responsive" :src="'/wallpaper-4.jpg'" /> -->
+      </button>
+      <button
+        class="round square transparent extra"
+        (click)="updateTheme('/wallpaper-5.jpg')"
+      >
+        <!-- <img class="responsive" :src="'/wallpaper-5.jpg'" /> -->
+      </button>
+      <!-- <button class="round square extra">
+        <i>upload</i>
+        <input
+          class="absolute top left right bottom no-opacity"
+          type="file"
+          @change="updateTheme( $event)"
+        />
+      </button> -->
+      <button
+        class="round square extra red"
+        (click)="updateTheme('#f44336')"
+      ></button>
+      <button
+        class="round square extra pink"
+        (click)="updateTheme('#e91e63')"
+      ></button>
+      <button
+        class="round square extra purple"
+        (click)="updateTheme('#9c27b0')"
+      ></button>
+      <button
+        class="round square extra deep-purple"
+        (click)="updateTheme('#673ab7')"
+      ></button>
+      <button
+        class="round square extra indigo"
+        (click)="updateTheme('#3f51b5')"
+      ></button>
+      <button
+        class="round square extra blue"
+        (click)="updateTheme('#2196f3')"
+      ></button>
+      <button
+        class="round square extra light-blue"
+        (click)="updateTheme('#03a9f4')"
+      ></button>
+      <button
+        class="round square extra cyan"
+        (click)="updateTheme('#00bcd4')"
+      ></button>
+      <button
+        class="round square extra teal"
+        (click)="updateTheme('#009688')"
+      ></button>
+      <button
+        class="round square extra green"
+        (click)="updateTheme('#4caf50')"
+      ></button>
+      <button
+        class="round square extra light-green"
+        (click)="updateTheme('#8bc34a')"
+      ></button>
+      <button
+        class="round square extra lime"
+        (click)="updateTheme('#cddc39')"
+      ></button>
+      <button
+        class="round square extra yellow"
+        (click)="updateTheme('#ffeb3b')"
+      ></button>
+      <button
+        class="round square extra amber"
+        (click)="updateTheme('#ffc107')"
+      ></button>
+      <button
+        class="round square extra orange"
+        (click)="updateTheme('#ff9800')"
+      ></button>
+      <button
+        class="round square extra deep-orange"
+        (click)="updateTheme('#ff5722')"
+      ></button>
+      <button
+        class="round square extra brown"
+        (click)="updateTheme('#795548')"
+      ></button>
+      <button
+        class="round square extra grey"
+        (click)="updateTheme('#9e9e9e')"
+      ></button>
+      <button
+        class="round square extra blue-grey"
+        (click)="updateTheme('#607d8b')"
+      ></button>
+      <button
+        class="round square extra black"
+        (click)="updateTheme('#000000')"
+      ></button>
+      <button
+        class="round square extra white"
+        (click)="updateTheme('#ffffff')"
+      ></button>
+    </nav>
+  </div>
+</dialog>

@@ -9,11 +9,11 @@ import { z } from 'zod';
 import { prisma } from '../../prisma';
 
 /**
- * Default selector for Post.
+ * Default selector for Note.
  * It's important to always explicitly say which fields you want to return in order to not leak extra information
  * @see https://github.com/prisma/prisma/issues/9353
  */
-const defaultPostSelect = Prisma.validator<Prisma.PostSelect>()({
+const defaultNoteSelect = Prisma.validator<Prisma.NoteSelect>()({
   id: true,
   title: true,
   text: true,
@@ -21,7 +21,7 @@ const defaultPostSelect = Prisma.validator<Prisma.PostSelect>()({
   updatedAt: true,
 });
 
-export const postRouter = router({
+export const noteRouter = router({
   list: publicProcedure
     .input(
       z
@@ -41,8 +41,8 @@ export const postRouter = router({
       const limit = input?.limit ?? 50;
       const { cursor } = input ?? {};
 
-      const items = await prisma.post.findMany({
-        select: defaultPostSelect,
+      const items = await prisma.note.findMany({
+        select: defaultNoteSelect,
         // get an extra item at the end which we'll use as next cursor
         take: limit + 1,
         where: {},
@@ -77,17 +77,17 @@ export const postRouter = router({
     )
     .query(async ({ input }) => {
       const { id } = input;
-      const post = await prisma.post.findUnique({
+      const note = await prisma.note.findUnique({
         where: { id },
-        select: defaultPostSelect,
+        select: defaultNoteSelect,
       });
-      if (!post) {
+      if (!note) {
         throw new TRPCError({
           code: 'NOT_FOUND',
-          message: `No post with id '${id}'`,
+          message: `No note with id '${id}'`,
         });
       }
-      return post;
+      return note;
     }),
   add: publicProcedure
     .input(
@@ -98,10 +98,10 @@ export const postRouter = router({
       })
     )
     .mutation(async ({ input }) => {
-      const post = await prisma.post.create({
+      const note = await prisma.note.create({
         data: input,
-        select: defaultPostSelect,
+        select: defaultNoteSelect,
       });
-      return post;
+      return note;
     }),
 });

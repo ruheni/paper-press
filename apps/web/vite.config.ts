@@ -13,7 +13,7 @@ export default defineConfig(({ mode }) => {
       host: '127.0.0.1',
     },
     ssr: {
-      noExternal: ['@analogjs/trpc/**', '.prisma/**', '@trpc/**'],
+      noExternal: ['@analogjs/trpc/**', '.prisma/**', '@trpc/**', 'beercss'],
     },
 
     build: {
@@ -23,9 +23,6 @@ export default defineConfig(({ mode }) => {
       analog({
         prerender: {
           routes: ['/'],
-        },
-        vite: {
-          inlineStylesExtension: 'scss',
         },
       }),
       tsConfigPaths({

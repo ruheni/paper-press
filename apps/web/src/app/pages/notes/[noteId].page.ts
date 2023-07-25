@@ -11,13 +11,15 @@ import { of } from 'rxjs';
   standalone: true,
   imports: [AsyncPipe, NgIf, JsonPipe, RouterModule],
   template: `
-    <a routerLink="..">Back</a>
+    <div class="page active">
+      <a routerLink="..">Back</a>
 
-    <h2>Note Details</h2>
+      <h2>Note Details</h2>
 
-    <ng-container *ngIf="note$ | async as note">
-      <pre>{{ note | json }}</pre>
-    </ng-container>
+      <ng-container *ngIf="note$ | async as note">
+        <pre>{{ note | json }}</pre>
+      </ng-container>
+    </div>
   `,
 })
 export default class NoteDetailsPageComponent {
@@ -26,7 +28,7 @@ export default class NoteDetailsPageComponent {
 
   public note$ = this.route.paramMap.pipe(
     switchMap((params) =>
-      this._trpc.posts.byId.query({ id: params.get('noteId') ?? '' }),
+      this._trpc.notes.byId.query({ id: params.get('noteId') ?? '' }),
     ),
     catchError((err) => {
       console.error(err);
