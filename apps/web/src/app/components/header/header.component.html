@@ -1,0 +1,76 @@
+<header>
+  <nav>
+    <button
+      class="circle large transparent m l small-margin"
+      data-ui="#dialog-expanded"
+    >
+      <i>menu</i>
+    </button>
+    <h5 class="max center-align">Paper Press</h5>
+    <button class="circle large transparent m l small-margin" data-ui="#themes">
+      <i>palette</i>
+    </button>
+  </nav>
+</header>
+
+<dialog class="left small" id="dialog-expanded">
+  <header class="fixed">
+    <nav>
+      <button class="transparent circle large" data-ui="#dialog-expanded">
+        <i>menu</i>
+      </button>
+    </nav>
+  </header>
+  <a class="row round" data-ui="#dialog-expanded" [routerLink]="['/']">
+    <i>home</i>
+    <div>Home</div>
+  </a>
+  <a class="row round" data-ui="#dialog-expanded" [routerLink]="['/', 'notes']"
+    ><i>whatshot</i>
+    <div>What's hot</div></a
+  >
+  <div class="small-divider"></div>
+  <a class="row round" data-ui="#dialog-expanded">
+    <i>history</i>
+    <div>History</div>
+  </a>
+</dialog>
+
+<dialog class="medium no-scroll" id="themes">
+  <header class="fixed">
+    <nav>
+      <button class="circle transparent" (click)="updateMode()">
+        <i>{{ isDark ? 'light_mode' : 'dark_mode' }}</i>
+      </button>
+      <button class="circle transparent">
+        <i>close</i>
+      </button>
+    </nav>
+  </header>
+  <div>
+    <nav class="wrap">
+      <button
+        *ngFor="let wallpaper of wallpapers"
+        class="round square transparent extra"
+        (click)="updateTheme(wallpaper)"
+      >
+        <img class="responsive" [src]="wallpaper" />
+      </button>
+
+      <button class="round square extra">
+        <i>upload</i>
+        <input
+          class="absolute top left right bottom no-opacity"
+          type="file"
+          (change)="updateTheme($event)"
+        />
+      </button>
+      <button
+        class="round square extra"
+        [ngClass]="color.display"
+        (click)="updateTheme(color.hex)"
+        *ngFor="let color of colors"
+      ></button>
+    </nav>
+  </div>
+</dialog>

@@ -1,9 +1,10 @@
 import { RouteMeta } from '@analogjs/router';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from './header.component';
-import "beercss";
-import "material-dynamic-colors";
+import { HeaderComponent } from './components/header/header.component';
+
+import 'beercss';
+import 'material-dynamic-colors';
 
 export const routeMeta: RouteMeta = {
   redirectTo: '/home',

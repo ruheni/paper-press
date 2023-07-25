@@ -93,7 +93,7 @@ export const noteRouter = router({
     .input(
       z.object({
         id: z.string().uuid().optional(),
-        title: z.string().min(1).max(32),
+        title: z.string().min(1).max(100),
         text: z.string().min(1),
       })
     )

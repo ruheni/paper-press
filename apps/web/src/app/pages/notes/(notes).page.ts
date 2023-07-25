@@ -33,11 +33,11 @@ import { injectTrpcClient } from '../../../trpc-client';
       <form (ngSubmit)="addNote(form)" #form="ngForm">
         <div class="field label border">
           <input type="text" name="title" required ngModel />
-          <label>Label</label>
+          <label>Title</label>
         </div>
         <div class="field textarea label border">
           <textarea name="text" required minlength="3" ngModel></textarea>
-          <label>Label</label>
+          <label>Content</label>
         </div>
 
         <button color="primary" type="submit">Add Note</button>
@@ -70,8 +70,6 @@ export default class ProductsListComponent {
   noteTrackBy: TrackByFunction<Note> = (_, note) => note.id;
 
   public addNote(form: NgForm) {
-    console.log(form);
-
     if (!form.valid) {
       form.form.markAllAsTouched();
       return;

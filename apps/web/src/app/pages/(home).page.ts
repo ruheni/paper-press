@@ -21,6 +21,16 @@ import { RouterModule } from '@angular/router';
   template: `
     <article>
       <h2>Products</h2>
+
+      <button>
+        <span>Default</span>
+        <i>arrow_drop_down</i>
+        <menu>
+          <a>Item 1</a>
+          <a>Item 2</a>
+          <a>Item 3</a>
+        </menu>
+      </button>
     </article>
   `,
 })
