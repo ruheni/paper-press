@@ -13,6 +13,11 @@ function getBaseUrl() {
   if (env.RENDER_INTERNAL_HOSTNAME)
     // reference for render.com
     return `http://${env.RENDER_INTERNAL_HOSTNAME}:${env.PORT}`;
+  if (env.DEPLOY_URL)
+    // reference for netlify.com
+    return `http://${env.DEPLOY_URL}`;
+  
+
   // assume localhost
   return `http://127.0.0.1:${env.PORT ?? 4200}`;
 }

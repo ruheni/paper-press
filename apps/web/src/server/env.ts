@@ -11,6 +11,7 @@ const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']),
   VERCEL_URL: z.string().optional(),
   RENDER_INTERNAL_HOSTNAME: z.string().optional(),
+  DEPLOY_URL: z.string().optional(),
   PORT: z.string().optional(),
 });
 
