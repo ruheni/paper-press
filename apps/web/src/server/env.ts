@@ -9,10 +9,6 @@ import { z } from 'zod';
 /*eslint sort-keys: "error"*/
 const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']),
-  VERCEL_URL: z.string().optional(),
-  RENDER_INTERNAL_HOSTNAME: z.string().optional(),
-  DEPLOY_URL: z.string().optional(),
-  PORT: z.string().optional(),
 });
 
 let envData = {} as z.infer<typeof envSchema>;
@@ -25,9 +21,6 @@ if (typeof process === 'undefined') {
 } else {
   const schema = envSchema.safeParse({
     NODE_ENV: process?.env?.['NODE_ENV'],
-    VERCEL_URL: process?.env?.['VERCEL_URL'],
-    RENDER_INTERNAL_HOSTNAME: process?.env?.['RENDER_INTERNAL_HOSTNAME'],
-    PORT: process?.env?.['PORT'],
   });
 
   if (!schema.success) {
