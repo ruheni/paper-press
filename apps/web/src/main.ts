@@ -1,4 +1,7 @@
 import 'zone.js';
+import 'beercss';
+import 'material-dynamic-colors';
+
 import { bootstrapApplication } from '@angular/platform-browser';
 
 import { AppComponent } from './app/app.component';

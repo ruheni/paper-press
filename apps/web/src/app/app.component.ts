@@ -3,8 +3,6 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 
-import 'beercss';
-import 'material-dynamic-colors';
 
 export const routeMeta: RouteMeta = {
   redirectTo: '/home',
