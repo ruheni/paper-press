@@ -73,6 +73,13 @@ export class HeaderComponent implements OnInit {
 
       if (mode) {
         await ui('mode', mode);
+      } else {
+        // get system theme
+        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)')
+          .matches
+          ? 'dark'
+          : 'light';
+        await ui('mode', systemTheme);
       }
 
       if (theme) {
